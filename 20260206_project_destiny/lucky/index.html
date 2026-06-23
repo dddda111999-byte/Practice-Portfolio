@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>運勢</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <ul>
+            <li><a href="../index.html" title="回到「首頁」">首頁</a></li>
+            <li><a href="../lucky/index.html" title="回到「運勢」" class="action">運勢</a></li>
+            <li><a href="../love/index.html" title="回到「愛情」">愛情</a></li>
+            <li><a href="../job/index.html" title="回到「工作」">工作</a></li>
+        </ul>
+    </header>
+    <main id="draw">
+        <div class="box">
+            <h1 id="title" data-txt="lucky">運勢</h1>
+            <hr>
+            <ol></ol>
+            <p id="result" class="none"></p>
+            <button type="button" id="btn">開始抽籤</button>
+        </div>
+    </main>
+    <footer>
+        <p>版權所有 &copy; 2026 陳孟琳</p>
+    </footer>
+    <div id="load" class="none">
+        <div class="loader-inner">
+            <img src="../assets/image/GeminiNobBG.png" alt="">
+            <h3 class="drawText">抽籤</h3>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/play.js"></script>

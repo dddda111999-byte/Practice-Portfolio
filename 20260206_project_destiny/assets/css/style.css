@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap');
+html, body, header, main, nav, div, footer, h1, h2, h3, h4, h5, h6, a, p, img, span, aside, article, menu, ul, ol, li, tr, th, td, blockquote, pre{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: inherit;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Chiron GoRound TC", sans-serif;
+}
+img{
+    vertical-align: bottom;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../image/unnamed.jpg);
+    background-size: cover;
+    background-position: center top;
+    overflow: hidden;
+    position: relative;
+}
+
+:root{
+    --textColor--: #2b2b2b;
+    --textAction--: #F2BCBC;
+    --textWhite--: #FFF;
+    --textNoAction--: #E8D2BD;
+    --textBlack--: #000000;
+    --AlphaBlack--: #00000088;
+    --transision--: all 800ms ease;
+    --shadow--: 3px 3px 3px #333;
+}
+
+header{
+    width: 100%;
+    height: 30vh;
+    line-height: 30vh;
+    text-align: center;
+}
+
+main#home{
+    width: 100%;
+    height: calc(70vh - 50px);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+main#home img{
+    width: 100%;
+}
+
+main#home .box{
+    width: 50%;
+    max-width: 280px;
+    min-width: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+main#home .box #prev, main#home .box #next{
+    position: absolute;
+    top: 40%;
+    font-size: 60px;
+    color: #6666;
+    cursor: pointer;
+    transition: var(--transision--);
+    z-index: 10;
+}
+
+main#home .box #prev{
+    left: -20px;
+}
+
+main#home .box #next{
+    right: -20px;
+}
+
+main#home .box .full{
+    width: 300%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-self: flex-start;
+    transition: var(--transision--);
+}
+
+main#home .box .full .item{
+    display: block;
+    width: calc((100% / 3));
+    position: relative;
+}
+
+main#home .box .full .item img{
+    width: 100%;
+}
+
+main#home .box .full .item h3{
+    width: 100%;
+    /* line-height: 只能用數字;
+    取代方案：用了 top: 50% + translate 公式後，你根本不需要設定行高來對齊，它會自動垂直置中 */
+    text-align: center;
+    color: var(--textColor--);
+    font-size: 40px;
+    font-weight: 500;
+    position: absolute;
+    /* transform-origin: 0 0; 如果要用子元素的左上角定位的話 就要寫這行
+    才會在top30%的時候左上角定位在30%的位置 */
+    /* h3 框架的左上角確實站在父層的正中心
+    但因為 h3 有寬度（填滿 100%）也有高度，
+    所以整個 h3 框架的身體會落在父層的右下區塊。
+    文字在框架裡面置中，所以文字也會跟著跑到右下角去 */
+    top: 50%; 
+    left: 50%;
+    /* 這行指令是讓 h3 把自己往左、往上各拉回它身體的一半 */
+    /* translate 平移 翻譯 (-50% -50%)是永遠固定的 他只會定中心點位置*/
+    transform: translate(-50%, -50%); 
+}
+
+/* 分業設計 */
+header ul{
+    width: 100%;
+    line-height: 30vh;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    color: var(--textColor--);
+    font-weight: 500;
+    font-size: 16px;
+}
+header ul li{
+    margin: 0 0.3em;
+}
+header ul li a{
+    padding: 0.5em 0.8em;
+    line-height: 2em;
+    border-radius: 8px;
+    background-color: var(--textNoAction--);
+    transition: var(--transision--);
+}
+header ul li a:hover{
+    filter: brightness(1.2);
+}
+header ul li a:active{
+    box-shadow: var(--shadow--);
+}
+header ul li a.action{
+    background-color: var(--textAction--);
+}
+
+
+main#draw{
+    width: 100%;
+    height: calc(70vh - 50px);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+main#draw .box{
+    width: 50%;
+    max-width: 350px;
+    min-width: 250px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 2.5em;
+    color: var(--textColor--);
+}
+main#draw .box ol li{
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transision--);
+}
+main#draw .box ol li:hover{
+    background-color: var(--textNoAction--);
+    color: var(--textColor--);
+    transform: scale(1.2);
+}
+
+main#draw #btn{
+    width: 100%;
+    height: 3em;
+    font-size: 20px;
+    background-color: var(--textWhite--);
+    color: var(--textBlack--);
+    border-radius: 10px;
+    border: none;
+    font-weight: 800;
+    box-shadow: var(--shadow--);
+    transition: var(--transision--);
+    margin: 0.5em 0;
+}
+
+main#draw .box #result{
+    text-align: justify;
+    line-height: 1.6em;
+    letter-spacing: 2px;
+}
+
+main#draw .box #result.none{
+    display: none;
+}
+
+main#draw .box ol .item.active{
+    transform: scale(1.2);
+    background-color: var(--textAction--);
+    color: var(--textColor--);
+}
+
+footer{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: var(--textWhite--);
+    bottom: 0;
+    left: 0;
+    background-color: var(--AlphaBlack--);
+}
+
+#load{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../image/unnamed.jpg);
+    background-size: cover;
+    background-position: center top;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 這是旋轉的容器 */
+.loader-inner {
+    /* 支點需要基準 */
+    width: 250px;
+    height: 250px;
+    /* 範圍對齊 幫裡面的 h3 設定 「座標邊界」 */
+    position: relative;
+    transform-origin: 50% 50%;
+    animation: loading 500ms steps(1) infinite; /* 動態綁在這裡 */
+}
+#load img{
+    width: 250px;
+    /* transform-origin: 50% 50%; 支點: 中間固定
+    animation: loading 500ms linear infinite; 
+    動畫設定: loading動畫碼 秒數 linear等數 infinite無限循環
+    steps(1)不要補中間的過程，直接跳到下一個關鍵影格 跳過去(n個關鍵影格)*/ 
+    display: block;
+    position: relative;
+}
+#load h3{
+    width: 100%;
+    text-align: center;
+    color: var(--textColor--);
+    font-size: 40px;
+    font-weight: 500;
+    /* 置中文字 */
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#load.none{
+    display: none;
+}
+@keyframes loading{
+    0%{ 
+        transform: rotate(0);
+    }
+    25%{
+        transform: rotate(20deg);
+    }
+    50%{
+        transform: rotate(0);
+    }
+    75%{
+        transform: rotate(-20deg);
+    }
+    100%{
+        transform: rotate(0);
+    }
+}
+@media only screen and (min-width: 834px){
+    main#home .box{
+        width: 100%;
+        max-width: none;
+        min-width: none;
+    }
+    main#home .box .full{
+        width: 100%;
+        justify-content: center;
+        transition: none;
+        padding: 40px;
+        transform: translateX(0)!important;
+    }
+    main#home .box .full .item{
+        margin: 10px;
+        max-width: 350px;
+    }
+    main#home .box #prev,main#home .box #next{
+        display: none;
+    }
+}
+@media only screen and (min-width: 1200px){}
+@media only screen and (min-width: 1440px){}

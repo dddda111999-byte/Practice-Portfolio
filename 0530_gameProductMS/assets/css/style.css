@@ -1,0 +1,546 @@
+/* ================== my Css ================== */
+
+
+:root {
+    --header-height: 3.5rem;
+
+    /* ================== Colors ================== */
+
+    --White-color: rgb(255, 255, 255);
+    --text-color: rgb(226, 226, 226);
+    --light-color: rgb(185, 185, 185);
+    --body-color: rgb(5, 9, 19);
+    --body-color2: rgb(29, 37, 57);
+    --blue-color: rgb(0, 119, 255);
+    --purple-color: rgb(151, 71, 255);
+    --buttonBlue-color: rgb(32, 130, 223);
+    --button-color: linear-gradient(90deg, rgb(18, 75, 128)0%, rgb(32, 130, 223)100%);
+    --card-color: linear-gradient(150deg, rgb(1, 82, 153)0%, rgb(0, 24, 51)100%);
+    --header-color: linear-gradient(90deg, rgb(0, 0, 0, 0.5)20%,  rgb(0, 0, 0, 0)50%, rgb(0, 0, 0, 0.5)80%);
+    --h1title-color: linear-gradient(180deg, rgb(255, 255, 255)0%, rgb(27, 165, 245)100%);
+
+
+    /* ================== Font and typography ================== */
+
+    --logo-font: "Orbitron", sans-serif;
+    --body-font: "Noto Sans TC", sans-serif;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.24rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+
+
+     /* ================== Font Weight ================== */
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-black: 800;
+
+
+    /* ================== Margin Bottom ================== */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+
+
+    /* ================== transition ================== */
+    --transition: 0.25s ease;
+    --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96); /* 自訂動畫速度曲線 */
+
+
+    /* ================== z index ================== */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
+    
+}
+/* ================== Rsponsive typography ================== */
+
+
+
+/* ================== BASE ================== */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+}
+
+h1, h2, h3, h4 {
+    color: var(--White-color);
+    font-weight: var(--font-semi-bold);
+    line-height: 1;
+}
+
+h1 {
+    font-size: var(--h1-font-size);
+    font-weight: var(--font-black);
+}
+
+h2, h3, h4 {
+    font-weight: var(--font-semi-bold);
+}
+
+h2 { font-size: var(--h2-font-size); }
+
+h3 { font-size: var(--h3-font-size); }
+
+p { color: var(--text-color); }
+
+:is(.h1, .h2, .h3) span {
+    display: inline-block;
+    background: var(--h1title-color);
+    background-clip: text;
+    color: transparent;
+}
+
+ul { list-style: none; }
+
+a { text-decoration: none; }
+
+img { 
+    max-width: 100%;
+    height: auto;
+    bottom: 0;
+}
+
+.img-holder { aspect-ratio: var(--width) / var(--height); } 
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* 圖片怎麼塞進容器 */
+    display: block; /* 消掉 inline image 的 baseline 空隙 */
+}
+
+/* 卡片圖片未載入時出現的背景顏色 */
+.card-banner { background-color: var(--light-color); }
+
+button, input { 
+    border: none;
+    outline: none;  /* focus後的外框線 */
+}
+
+.button {
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    /* margin-inline: auto; */
+    color: var(--White-color);
+    background: var(--button-color);
+}
+
+/* 會一直顯示著所以先關掉 */
+/* .skewBg {
+    position: relative;
+    z-index: 1;
+
+}
+
+.skewBg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: skewX(var(--skewX, -16deg));
+    background: var(--blue-color);
+    transition: 0.3s ease;
+    z-index: -1;
+} */
+
+.has-scrollbar {
+    display: flex;
+    gap: 30px;
+    overflow: auto;  /* 超出容器時 自動出現 scrollbar 因為超出畫面寬度所以可以左右滑動 */
+    padding-block-end: 30px;  /* 因為 scrollbar 會貼圖片底部 所以要留空間 */
+    scroll-snap-type: inline mandatory;  /* Scroll Snap（滑動吸附） */
+    scroll-padding-inline: 24px;
+}
+
+/* 整條 scrollbar */
+.has-scrollbar::-webkit-scrollbar { height: 10px; }
+
+/* UI  track 軌道 thumb 滑塊 button 箭頭區 */
+/* scrollbar 軌道背景 */
+.has-scrollbar::-webkit-scrollbar-track { outline: 3px solid var(--buttonBlue-color); }
+
+/* 你拖曳的那顆滑塊 */
+.has-scrollbar::-webkit-scrollbar-thumb { background-color: var(--buttonBlue-color); }
+
+/* scrollbar 左右兩端區域  製造左右留白效果 左右兩端各佔 25% 左右各空一塊 
+把 scrollbar 左右兩端變成「不可滑動的空白區」*/
+.has-scrollbar::-webkit-scrollbar-button { width: calc(25% - 40px); }
+
+.scrollbar-item {
+    min-width: 100%;  /* 每張卡片都跟父容器一樣寬 一次只看到一張 */
+    scroll-snap-align: start;
+}
+
+
+
+
+
+/* ================== REUSABLE CSS CLASSES ================== */
+.section { padding: 4.5rem 0 2rem ; }
+
+.section__title {
+    font-size: var(--h2-font-size);
+    margin-bottom: var(--mb-2);
+    text-align: start;  /* 讓容器內的文字與 inline 元素水平置中 */
+}
+
+
+/* ================== LAYOUT ================== */
+
+.container {
+    max-width: 986px;
+    margin-inline: auto;
+    padding-inline: var(--mb-1-5);
+}
+
+
+
+
+/* ================== HEADER ================== */
+
+.header {
+    width: 100%;
+    background: var(--header-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+/* ================== NAV ================== */
+.nav {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo {
+    display: flex;
+    font-size: var(--h1-font-size);
+    font-weight: var(--logo-font);
+    align-items: center;
+    column-gap: .5rem;
+}
+
+.nav__logo-img {
+    width: 2rem;
+}
+
+.nav__logo,
+.nav__link,
+.nav__close-icon,
+.nav__menu-icon {
+    color: var(--White-color);
+}
+
+.nav__toggle-btn {
+    font-size: 30px;
+    border: 1px solid var(--White-color);
+    padding: 4px;
+    background: transparent;
+}
+
+.nav__toggle-btn .nav__menu-icon,
+.nav__toggle-btn.active .nav__close-icon { display: block; }
+
+.nav__toggle-btn.active .nav__menu-icon,
+.nav__toggle-btn .nav__close-icon { display: none; }
+
+.nav__menu {
+    background: var(--body-color);
+    color: var(--White-color);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    max-width: 300px;
+    /* 以下確保他會消失 */
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.25 var(--cubic-out);
+}
+
+.nav__menu.active {
+    visibility: visible;
+    max-height: 275px;
+    transition-duration: 0.5s;
+}
+
+.nav__item:not(:last-child) { border-block-end: 1px solid var(--body-color2); }
+
+.nav__link {
+    display: block;
+    padding: 10px 25px;
+    transition: var(--transition);
+}
+
+.nav__link:is(:hover, :focus) { background: var(--blue-color); }
+
+
+
+
+/* ================== HERO ================== */
+
+.hero { padding: 0 0 2rem; }
+
+.hero > .container {
+    padding: 0;
+}
+
+.hero__banner {
+    width: 100%;
+    height: 60vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    justify-content: center;
+    align-content: end;
+}
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero__title {
+    font-size: 2.5rem;
+    line-height: 130%;
+    /* 因為span變成block 所以這裡要flex才會置中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero__title span {
+    display: block;
+}
+
+.hero__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-inline: 1.5rem;
+    margin-top: 20px;
+}
+
+.hero__button {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.hero__button > .button {
+    display: block;
+    width: 100%;
+    padding-block: 15px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: var(--h2-font-size);
+    font-weight: var(--font-semi-bold);
+    letter-spacing: 2px;
+}
+
+
+
+
+
+/* ================== LATEST NEWS ================== */
+.latestNews__title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.latestNews__text { color: var(--blue-color); }
+
+.laytestNews__card {
+    position: relative;
+    display: grid;
+    align-items: end;
+    margin-block-end: 20px;
+}
+
+.laytestNews__card .card-banner.img-holder {
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+}
+
+.laytestNews__card .img-cover {
+    display: block;
+    border-radius: 16px;
+}
+
+.laytestNews__card .card-overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    inset: 0;
+    padding: 5px 10px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: start;
+    gap: 6px;
+}
+
+.laytestNews__card .card-overlay .h3 {
+    background-color: var(--blue-color);
+    padding: 5px;
+}
+
+.laytestNews__card .card-overlay .h3.purplee{
+    background-color: var(--purple-color);
+    padding: 5px;
+}
+
+
+
+
+/* ================== GAME CHARACTERS ================== */
+.gameCharacters__list.has-scrollbar {
+    gap: 10px;
+}
+
+.gameCharacters__item.scrollbar-item {
+    flex: 0 0 clamp(220px, 25vw, 280px);
+    /* 不放大 不縮小 卡片基準寬度
+    最小 220px 理想 25% 螢幕寬 最大 280px */
+    min-width: inherit;
+}
+
+
+.gameCharacters__card .card-banner.img-holder {
+    aspect-ratio: 3 / 5;
+}
+
+.gameCharacters__content {
+    width: 100%;
+    background: var(--card-color);
+    padding: 10px;
+}
+
+.gameCharacters__content .h3 {
+    line-height: 2rem;
+}
+
+
+
+/* ================== GAME SCENES ================== */
+
+/* 剛好通用區塊都設定好了這裡又沒設定什麼內容所以不用 */
+
+
+
+/* ================== OFFICIAL TAILER ================== */
+
+.officialTailer__contant {
+    position: relative;
+}
+
+.officialTailer__button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    background: transparent;
+}
+
+
+
+/* ================== #FOOTER ================== */
+
+.social__icon {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer__button {
+    background: transparent;
+    font-size: 48px;
+}
+
+.footer__content .h3 {
+    margin-block-end: 10px;
+    letter-spacing: 2px;
+}
+
+.footer__content .h3:hover {
+    color: var(--blue-color);
+}
+
+.footer__box {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+/* ================== #RWD ================== */
+
+@media (min-width: 992px) {
+
+/* ================== LAYOUT ================== */
+
+.container {
+    max-width: 1170px;
+}
+
+/* ================== NAV ================== */
+
+.nav__toggle-btn { display: none; }
+
+.nav__menu,
+.nav__menu.active {
+    /* 先清除樣式 */
+    visibility: visible;
+    position: static; /* 預設 */
+    max-height: none;
+    background: transparent;
+    overflow: visible;
+    /* 貼齊右邊 */
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.nav__list {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav__item,
+.nav__link {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.nav__item:not(:last-child) { border: none; }
+
+}

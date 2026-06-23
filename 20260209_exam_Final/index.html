@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+    <!-- 外層的 index.html：它是門面。
+    當你輸入網址（例如 www.abc.com）時，它是第一個跳出來的。
+    它的任務是讓使用者「選擇」要去哪。 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="命運好好玩">
+    <title>命運好好玩</title>
+    <!-- js font-awesome (search cdnjs) 設定按鈕要用的 並且放在最上面下面這位置 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <!-- 大標題 -->
+        <h1>來試試你的手氣吧！</h1>
+    </header>
+    <!-- 選項清單最外框的大盒子 -->
+    <main id="home">
+        <!-- 裝選項的盒子 -->
+        <div class="box">
+            <div class="full">
+                <a href="lucky/index.html" class="item" title="運勢">
+                    <img src="assets/images/theme.png" alt="">
+                    <h3>運勢</h3>
+                </a>
+                <a href="love/index.html" class="item" title="愛情">
+                    <img src="assets/images/theme.png" alt="">
+                    <h3>愛情</h3>
+                </a>
+                <a href="job/index.html" class="item" title="工作">
+                    <img src="assets/images/theme.png" alt="">
+                    <h3>工作</h3>
+                </a>
+            </div>
+            <div id="prev" class="fa-solid fa-caret-left"></div>
+            <div id="next" class="fa-solid fa-caret-right"></div>
+        </div>
+    </main>
+    <footer>
+        <p>版權所有 &copy; 2026 周家祥</p>
+    </footer>
+</body>
+</html>
+<script src="assets/js/homeSlide.js"></script>

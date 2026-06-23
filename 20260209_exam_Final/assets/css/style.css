@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap');
+/* 歸零 這裡不再使用*{} */
+html,body,header,footer,nav,main,h1,h2,h3,h4,a,img,p,div,span,aside,article,menu,ul,ol,li,i{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* inherit 繼承父元素的特徵 */
+    color: inherit; 
+    /* 超連結 */
+    text-decoration: none;
+    /* <ul> / <li> */
+    list-style: none;
+    font-family: "Chiron GoRound TC", sans-serif;
+}
+img{
+    /* 垂直對齊: 底部
+    確保所有東西的「腳」都在同一條水平線上，這最符合人類視覺的穩定感 */
+    vertical-align: bottom;
+}
+/* 確保**「最外層的容器」**能夠完全同步，並消除瀏覽器預設的差異
+在瀏覽器的邏輯中，body 是住在 html 裡面的
+如果你只設定 body { height: 100vh; }，
+有些瀏覽器在計算背景圖片或定位時，會因為父層（html）沒有明確高度而產生誤判 */
+html,body{
+    width: 100%;
+    height: 100vh; /* 100% */
+    background-image: url(../images/background.png);
+    /* 如果不寫 cover，當螢幕很大時，背景圖可能會因為不夠大而「重覆出現（Repeat）」或是「露出白邊」
+    cover (裁切填滿)
+    contain (完整顯示)
+    100% 100% (強制拉伸)
+    auto (原始大小) */
+    /* cover (填滿並裁切) 為了不留白 圖片的邊緣會被裁切掉
+    contain (完整顯示) 圖片會保持完整，不會被裁切 容器內會出現留白
+    100% 100% (強制拉伸) 變扁或變瘦），完全不理會原始比例
+    auto (原始大小) 如果圖片比容器大，會只看到局部；如果比容器小，會出現重複 */
+    background-position: center top; /* X, Y 座標系統 */
+    overflow: hidden; /* overflow（溢出） */
+    position: relative;
+}
+
+:root{
+    --textColor--: #2B2B2B;
+    --textAction--: #FFBB22;
+    --textWhite--: #FFFFFF;
+    --textGray--: #D9D9D9;
+    --AlphaBlack--: #00000088;
+    /* 轉場 all代表所有屬性 */
+    --transision--: all 800ms ease;
+    /* 陰影 */
+    --shadow--: 3px 3px 3px gray;
+}
+
+header{
+    width: 100%;
+    height: 30vh;
+    /* 「一整行」所佔據的總高度，包含了文字本體以及它上下方的空白間距 */
+    line-height: 30vh;
+    text-align: center;
+}
+
+/*首頁設計*/
+main#home{
+    width: 100%;
+    /* 減掉footer的高度 原本100vh - 30vh ＝ 70vh */
+    height: calc(70vh - 50px);
+    /* Flexible（彈性） 彈性分配空間設定 */
+    display: flex;
+    /* nowrap 不換行(預設)  wrap換行 */
+    flex-wrap: nowrap;
+    /* center 把所有子元素往中間推。
+    flex-start 全部靠左。 預設
+    flex-end 全部靠右。
+    space-between 第一個靠最左，最後一個靠最右，中間平均分配。 */
+    justify-content: center; 
+    
+    /* align-items	每一行內的個別元素	完全沒寫時（預設 align-items: stretch;（拉伸/撐滿））。
+    align-content	多行之間的分配	必須設定 flex-wrap: wrap; 且真的有換行。 */
+    align-items: flex-start;
+    /* align-items
+    stretch 預設 拉伸以填滿容器的高度
+    flex-start 對齊該行容器的 頂部
+    flex-end 對齊該行容器的 底部
+    center 在該行高度內 垂直居中
+    baseline 對齊子元素內文字的「基線」（讓所有字母的底部對齊） */
+/*     
+    align-content
+    stretch 預設 所有 行 會被拉長，平分容器剩餘的高度
+    flex-start：所有行集體靠向容器「頂部」
+    flex-end：所有行集體靠向容器「底部」
+    center：所有行集體在容器「垂直中間」
+    space-between：第一排貼頂，最後一排貼底，中間行距「均分」
+    space-around：每一行上下「各留一份空白」（行距會是邊距的兩倍）
+    space-evenly：所有空白（最上、最下、行與行之間）「完全等寬」 */
+}
+
+/* 主畫面圖片顯示尺寸
+在 CSS 的眼中，只要 <img> 被包在 main#home 裡面，
+無論中間隔了多少層 div，main#home img 都會對它生效
+但是權重關係所以他不影響後面結果 */
+main#home img{
+    width: 100%;
+}
+/* 設定播放圖片外部盒子框的大小 */
+main#home .box{
+    /* 在 CSS 中，百分比（%）的計算基準永遠是 父元素（上一層容器）的寬度 */
+    width: 50%; /* 寬度都會被設定為父元素寬度的一半 */
+    /* 在這裡給他限制寬度防止他跑版，與item不同之處是
+    .box 負責與網頁的其他元素（如側邊欄、文字）協調排版空間；
+    而 .item 只需要負責把自己塞進 .box 劃分好的空間裡。
+    如果不設定 .box 的寬度，.item 的百分比計算就會失去基準點。 */
+    max-width: 200px; 
+    min-width: 180px;
+    /* 用這個會出問題
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start; */
+    /* 將他並排顯示，然後做出只有一顆hidden */
+    overflow: hidden;
+    /* 為了放下面箭頭需要給盒子做相對位置讓他知道 */
+    position: relative;
+}
+main#home .box #prev,main#home .box #next{
+    position: absolute;
+    top: 40%; /* 懶人的大約位置 */
+    /* top: 50%; 在正中間
+    transform: translateY(-50%); 向上移動自己高度的一半 */
+    font-size: 60px;
+    color: #6666;
+    cursor: pointer;
+    transition: var(--transision--);
+    z-index: 10;
+}
+main#home .box #prev:hover,main#home .box #next:hover{
+    color: var(--textWhite--);
+}
+main#home .box #prev{
+    left: -20px;
+}
+main#home .box #next{
+    right: -20px;
+}
+/* 在#home的大區塊下包住的 定義場域 避免樣式「誤傷」其他頁面（命名空間）
+.box組成一個盒子裡的 定義觀景窗 它設定了 overflow: hidden。
+它就像是一扇「窗戶」，限制了使用者一次只能看到多少內容
+.full裝入三張圖的盒子裡 定義輸送帶 讓full可以變形且塞下三張圖 設定變換效果 */
+main#home .box .full{
+    width: 300%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    /* 因為在輪播圖的運作中，真正「移動」的人是 .full，而不是另外兩個盒子 */
+    /* CSS (靜態設定) 設定「移動的方式」
+    JS (動態指令) 下達「移動的指令」 */
+    transition: var(--transision--);
+}
+/* 製作輪播轉換盒子 */
+main#home .box .full .item{
+    /* block 區塊元素
+    <a> 預設是 inline（行內元素），如果不改成 block，它會像文字一樣無法設定寬高
+    預設會佔滿父元素橫向的 100% 寬度，並且強迫後面的元素換行（除非它被包在 Flex 容器裡） */
+    display: block;
+    width: calc((100% / 3));
+    /* 為了給裡面的 h3 當 基準點 */
+    position: relative;
+}
+/* 主畫面圖片顯示尺寸 */
+main#home .box .full .item img{
+    width: 100%;
+}
+/* 設定主畫面圖片內文字的設定 */
+main#home .box .full .item h3{
+    width: 100%;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+    color: var(--textWhite--);
+    background-color: var(--AlphaBlack--);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/*次分頁分類選單設計*/
+/* 列表主題項目清單 設定樣式 */
+header ul{
+    width: 100%;
+    /* 為了不要太高而把line-height設寬，讓高度置中時可以再低一點的位置 */
+    line-height: 30vh;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    /* color font-weight ... 為什麼不寫在 li 或 a 身上
+    如果你有 5 個 li，寫在 ul 只要寫一次；寫在 li 要寫 5 次（或寫一個類別） */
+    color: var(--textColor--);
+    font-weight: 700;
+}
+header ul li{
+    /* 上下 左右距離 */
+    margin: 0 0.3em; 
+    /* 你沒有設定 align-items: stretch 預設拉伸
+    意味著所有的子元素（li）會自動填滿父元素（ul）的所有可用高度 */
+}
+header ul li a{
+    padding: 0.5em 0.8em;
+    /* 局部覆蓋 撐開按鈕高度 這裡不會擴增高度
+    原本 a 標籤會從父元素（header）繼承那個誇張的 30vh 行高。
+    但你在這裡寫了 2em，這代表：
+    「別聽祖父母（header）的，聽我自己的，我的文字高度只要 2 倍字體大小就好。」 */
+    line-height: 2em;
+    border: 2px solid #c4c4c4;
+    background-color: var(--textGray--);
+    box-shadow: var(--shadow--);
+    transition: var(--transision--);
+}
+/* :hover 滑鼠懸停 */
+header ul li a:hover{
+    filter: brightness(1.2);
+}
+/* :active 點擊瞬間 */
+header ul li a:active{
+    box-shadow: var(--shadow--) inset;
+}
+/* a.action html.class 空格 = 裡面的 */
+header ul li a.action{
+    background-color: var(--textAction--);
+    border: 2px solid #FBAF00;
+}
+
+/* 次分頁主角設計 */
+/* 這裡跟前面的設定一樣所以直接複製貼上就好 */
+main#draw{
+    width: 100%;
+    /* 這裡的header也佔了30vh footer站了50px */
+    height: calc(70vh - 50px);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+main#draw .box{
+    width: 50%;
+    /* 用手機的大小去切換預覽看鄭不正常 */
+    max-width: 350px;
+    min-width: 250px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 2.5em;
+    color: var(--textColor--);
+}
+main#draw .box ol li{
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transision--);
+}
+
+main#draw .box ol li:hover{
+    background-color: var(--textAction--);
+    color: var(--textWhite--);
+    transform: scale(1.2);
+}
+
+main#draw #btn{
+    width: 100%;
+    height: 3em;
+    font-size: 20px;
+    background-color: var(--textColor--);
+    color: var(--textWhite--);
+    border-radius: 10px;
+    box-shadow: var(--shadow--);
+    transition: var(--transision--);
+    margin: 0.5em 0;
+}
+
+/* 抽籤內容結果 */
+main#draw .box #result{
+    text-align: justify; /* 左右兩邊對齊 */
+    line-height: 1.6em;
+    letter-spacing: 2px;
+}
+
+/* 次分頁的抽籤結果先隱藏 */
+main#draw .box #result.none{
+    display: none;
+}
+
+/* 次分頁的被選中選項點燈效果 */
+main#draw .box ol .item.active{
+    transform: scale(1.2);
+    background-color: #550055;
+    color: #FFF;
+}
+
+footer{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: var(--textWhite--);
+    /* position: absolute; */
+    /* 距離底部的距離為 0 */
+    bottom: 0;
+    /* 距離左邊為 0。配合 width: 100%;，
+    這能確保頁尾從最左邊橫跨到最右邊，完整填滿寬度 */
+    left: 0;
+    background-color: var(--AlphaBlack--);
+}
+
+/* 參考上面的html,body{}設計去改的 因為都是控制背景圖 */
+#load{
+    /* 蓋住 必須設定 top: 0 和 left: 0 並配合 width: 100%、height: 100vh
+    強行佔領目前看得到的整片螢幕空間 */
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/background.png);
+    background-size: cover;
+    background-position: center top;
+    overflow: hidden;
+    /* 這裡改成flex 讓他固定 確保載入畫面 「永遠卡在螢幕正前方」，不會隨著頁面捲動而跑掉
+    relative 代表了整個視窗的最底層 
+    使用 relative 是為了讓裡面的子元素（如 footer）可以參考它的位置，但它本身不需要「飄起來」
+    不能設為 fixed，否則整個網站的內容都會被鎖死在螢幕上無法捲動 */
+    position: fixed; /* 定位方式：釘住 */
+    /* 如果你不給它座標，瀏覽器有時會把它放在它在 HTML 原本該出現的位置（例如 footer 下面） */
+    top: 0;
+    left: 0;
+    z-index: 15;
+    /* 決定盒子裡面的「內容物」要擺在哪裡（置中）
+    這組指令是為了控制 「包在 #load 裡面的那個 img（圖片）」
+    如果「不寫」 flex 
+    那張 theme.png 圖片會像寫字一樣，預設從盒子的 「左上角」 開始擺放 */
+    display: flex; /* 佈局模式：排版 */
+    justify-content: center;
+    align-items: center;
+}
+#load img{
+    /* 大小粗估 */
+    width: 250px;
+    /* 釘子釘下去的位置 左右0 100 上下0 100 */
+    transform-origin: 75% 90%;
+    /* 名稱 套用名為 loading 的 @keyframes 動畫
+    時長 動畫完成一次循環需要 0.5 秒。
+    速度曲線 勻速運動，沒有加速或減速
+    次數 無限次循環播放 */
+    animation: loading 500ms linear infinite;
+}
+#load.none{
+    display: none;
+}
+
+@keyframes loading{
+    0%{ /* 起點 */
+        /* transform 變換 Rotate 意為旋轉 Scale 意為比例 Translate 意為平移 */
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(10deg);
+    }
+    100%{
+        transform: rotate(0);
+    }
+}
+
+/* 834以下是手機版 */
+@media only screen and (min-width: 834px){
+    main#home .box{
+        width: 100%; 
+        /* 把box設定的圖片最大最小尺寸關掉 */
+        max-width: none;
+        min-width: none;
+    }
+    main#home .box .full{
+        width: 100%;
+        justify-content: center;
+        transition: none;
+        padding: 40px;
+        /* js設定的.full標籤增加移動效果(行內式)，再者裡要停掉
+        important讓js也改不了，但是變回手機版就可以動  */
+        transform: translateX(0)!important;
+    }
+    main#home .box .full .item{
+        margin: 10px;
+        /* item裡的圖片的最大尺寸 */
+        max-width: 350px;
+    }
+    main#home .box #prev,main#home .box #next{
+        display: none;
+    }
+}
+/* 834以上是桌機版跟平板 */
+@media only screen and (min-width: 1200px){}
+@media only screen and (min-width: 1440px){}

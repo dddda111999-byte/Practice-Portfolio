@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+    <!-- 內層的 lucky/index.html：它是功能房。
+    它專門負責「抽籤」這個動作 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="命運好好玩">
+    <title>運勢 | 命運好好玩</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <ul>
+            <!-- <i class="fa-solid fa-yin-yang"></i>  font-awesome直接貼上就可以使用 -->
+            <li><a href="../index.html" title="回到首頁"><i class="fa-solid fa-yin-yang"></i>首頁</a></li>
+            <li><a href="../lucky/index.html" title="前往「運勢」" class="action"><i class="fa-solid fa-yin-yang"></i>運勢</a></li>
+            <li><a href="../love/index.html" title="前往「愛情」"><i class="fa-solid fa-yin-yang"></i>愛情</a></li>
+            <li><a href="../job/index.html" title="前往「工作」"><i class="fa-solid fa-yin-yang"></i>工作</a></li>
+        </ul>
+    </header>
+    <main id="draw">
+        <div class="box">
+            <h1 id="title" data-txt="lucky">運勢</h1>
+            <hr>
+            <!-- 前面有ul標籤所以這裡用ol標籤 -->
+            <ol></ol>
+            <p id="result" class="none"></p>
+            <button type="button" id="btn">開始抽籤</button>
+        </div>
+    </main>
+    <footer>
+        <p>版權所有 &copy; 2026 周家祥</p>
+    </footer>
+    <!-- load 載入畫面 寫在body 的最底部
+    確保它能「蓋住」所有東西 (Z-index 層級) 在 CSS 中，雖然你可以用 z-index 來控制誰在上面，但 HTML 的先後順序也會影響渲染
+    即便你不設定 z-index，#load 因為是最後畫上去的，它自然會疊在最上面
+    避免 z-index 失靈  
+    如果你把 #load 寫在最前面，雖然你給它 z-index: 15，
+    但如果後面的 main 剛好也有設定 position 屬性，
+    有時候會產生「層疊上下文（Stacking Context）」的衝突，導致 #load 莫名其妙被擋住。
+    把它寫在最後面，就是為了避開這種複雜的 CSS 計算，直接利用 HTML 的先後順序來保證它一定在最上層-->
+    <div id="load" class="none">
+        <!-- 抽籤選項畫面 -->
+        <img src="../assets/images/theme.png" alt="">
+    </div>
+</body>
+</html>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/play.js"></script>
